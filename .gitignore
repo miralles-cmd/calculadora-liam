@@ -1,0 +1,15 @@
+# Entornos virtuales
+.venv/
+.venv-kivy/
+.venv-1/
+__pycache__/
+*.pyc
+
+# Base de datos (datos personales, no se sube)
+datos/tienda.db
+
+# Exports
+exports/
+
+# Kivy cache
+.kivy/
