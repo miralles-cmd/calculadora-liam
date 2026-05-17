@@ -5,7 +5,14 @@ import os
 import datetime
 
 # Ruta al archivo de base de datos
-RUTA_DB = os.path.join("datos", "tienda.db")
+import os
+
+# Detectar si estamos en Android
+if 'ANDROID_ARGUMENT' in os.environ:
+    from android.storage import app_storage_path
+    RUTA_DB = os.path.join(app_storage_path(), "tienda.db")
+else:
+    RUTA_DB = os.path.join("datos", "tienda.db")
 
 
 def conectar():
