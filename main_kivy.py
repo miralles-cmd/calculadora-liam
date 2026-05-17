@@ -11,6 +11,8 @@ from kivy.metrics import dp
 from base_datos import inicializar_db
 from pantallas.pantalla_ticket import PantallaTicket
 from pantallas.pantalla_productos import PantallaProductos
+from pantallas.pantalla_categorias import PantallaCategorias
+from pantallas.pantalla_historial import PantallaHistorial
 
 Window.size = (400, 700)
 
@@ -18,12 +20,14 @@ Window.size = (400, 700)
 class PantallaMenu(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        layout = BoxLayout(orientation="vertical", padding=dp(24), spacing=dp(12))
+        layout = BoxLayout(orientation="vertical",
+                           padding=dp(24), spacing=dp(12))
 
         layout.add_widget(Label(text="Gestion de Tienda", font_size=22,
                                 bold=True, size_hint=(1, 0.15)))
         layout.add_widget(Label(text="Selecciona una opcion", font_size=13,
-                                color=(0.6, 0.6, 0.6, 1), size_hint=(1, 0.08)))
+                                color=(0.6, 0.6, 0.6, 1),
+                                size_hint=(1, 0.08)))
 
         botones = [
             ("Ticket del dia",  "ticket"),
@@ -53,6 +57,8 @@ class GestionTiendaApp(App):
         sm.add_widget(PantallaMenu(name="menu"))
         sm.add_widget(PantallaTicket(name="ticket"))
         sm.add_widget(PantallaProductos(name="productos"))
+        sm.add_widget(PantallaCategorias(name="categorias"))
+        sm.add_widget(PantallaHistorial(name="historial"))
         return sm
 
 
