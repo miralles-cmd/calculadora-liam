@@ -10,6 +10,7 @@ from kivy.metrics import dp
 
 from base_datos import inicializar_db
 from pantallas.pantalla_ticket import PantallaTicket
+from pantallas.pantalla_productos import PantallaProductos
 
 Window.size = (400, 700)
 
@@ -51,6 +52,7 @@ class GestionTiendaApp(App):
         sm = ScreenManager()
         sm.add_widget(PantallaMenu(name="menu"))
         sm.add_widget(PantallaTicket(name="ticket"))
+        sm.add_widget(PantallaProductos(name="productos"))
         return sm
 
 
