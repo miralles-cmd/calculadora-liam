@@ -6,6 +6,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.core.window import Window
+import os
 from kivy.metrics import dp
 
 from base_datos import inicializar_db
@@ -14,7 +15,9 @@ from pantallas.pantalla_productos import PantallaProductos
 from pantallas.pantalla_categorias import PantallaCategorias
 from pantallas.pantalla_historial import PantallaHistorial
 
-Window.size = (400, 700)
+# Solo fijar tamaño en PC, en Android usar pantalla completa
+if 'ANDROID_ARGUMENT' not in os.environ:
+    Window.size = (400, 700)
 
 
 class PantallaMenu(Screen):
