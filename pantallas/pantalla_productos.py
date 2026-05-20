@@ -22,16 +22,17 @@ GRIS    = (0.6,  0.6,  0.6,  1)
 FONDO   = (0.12, 0.12, 0.18, 1)
 
 
-def lbl(texto, size=14, color=BLANCO, bold=False, halign="left"):
-    l = Label(text=texto, font_size=size, color=color, bold=bold,
+from kivy.metrics import dp, sp
+
+def lbl(texto, size=18, color=BLANCO, bold=False, halign="left"):
+    l = Label(text=texto, font_size=sp(size), color=color, bold=bold,
                halign=halign, valign="middle")
     l.bind(size=lambda s, v: setattr(s, "text_size", v))
     return l
 
-
-def btn(texto, color=AZUL, alto=dp(48)):
+def btn(texto, color=AZUL, alto=dp(58)):
     return Button(
-        text=texto, font_size=14,
+        text=texto, font_size=sp(18),
         size_hint=(1, None), height=alto,
         background_color=color,
         background_normal=""
@@ -69,14 +70,14 @@ class PantallaProductos(Screen):
 
         self.inp_nombre = TextInput(
             hint_text="Nombre del producto",
-            font_size=14, multiline=False,
+            font_size=sp(18), multiline=False,
             size_hint=(1, None), height=dp(42),
         )
         raiz.add_widget(self.inp_nombre)
 
         self.inp_precio = TextInput(
             hint_text="Precio por gramo (ej: 0.05)",
-            font_size=14, multiline=False,
+            font_size=sp(18), multiline=False,
             size_hint=(1, None), height=dp(42),
             input_filter="float"
         )
@@ -89,7 +90,7 @@ class PantallaProductos(Screen):
             text=nombres_cat[0] if nombres_cat else "Sin categorias",
             values=nombres_cat,
             size_hint=(1, None), height=dp(42),
-            font_size=14
+            font_size=sp(18)
         )
         raiz.add_widget(self.spinner_cat)
 
@@ -133,7 +134,7 @@ class PantallaProductos(Screen):
         for p in productos:
             fila = Button(
                 text=f"{p[1]}   {p[2]:.4f} EUR/g   [{p[3]}]",
-                font_size=13,
+                font_size=sp(16),
                 size_hint_y=None, height=dp(40),
                 background_normal="",
                 background_color=(0.2, 0.2, 0.35, 1),
@@ -191,9 +192,9 @@ class PantallaProductos(Screen):
 
         frame = BoxLayout(spacing=dp(8), size_hint=(1, None), height=dp(48))
         b_si = Button(text="Si, eliminar", background_color=ROJO,
-                      background_normal="", font_size=13)
+                      background_normal="", font_size=sp(16))
         b_no = Button(text="Cancelar", background_color=(0.3, 0.3, 0.3, 1),
-                      background_normal="", font_size=13)
+                      background_normal="", font_size=sp(16))
 
         def confirmar(x):
             eliminar_producto(prod[0])

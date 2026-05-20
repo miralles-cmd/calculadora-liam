@@ -27,16 +27,17 @@ NOMBRES_MES = {
 }
 
 
-def lbl(texto, size=14, color=BLANCO, bold=False, halign="left"):
-    l = Label(text=texto, font_size=size, color=color, bold=bold,
+from kivy.metrics import dp, sp
+
+def lbl(texto, size=18, color=BLANCO, bold=False, halign="left"):
+    l = Label(text=texto, font_size=sp(size), color=color, bold=bold,
                halign=halign, valign="middle")
     l.bind(size=lambda s, v: setattr(s, "text_size", v))
     return l
 
-
-def btn(texto, color=AZUL, alto=dp(48)):
+def btn(texto, color=AZUL, alto=dp(58)):
     return Button(
-        text=texto, font_size=14,
+        text=texto, font_size=sp(18),
         size_hint=(1, None), height=alto,
         background_color=color,
         background_normal=""

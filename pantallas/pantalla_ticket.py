@@ -9,7 +9,6 @@ from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 from kivy.uix.textinput import TextInput
 from kivy.metrics import dp
-from kivy.metrics import dp, sp
 
 from base_datos import (obtener_o_crear_ticket_hoy, obtener_lineas_ticket,
                         obtener_gastos, actualizar_gastos, listar_productos,
@@ -27,16 +26,18 @@ BLANCO     = (1,    1,    1,    1)
 GRIS       = (0.6,  0.6,  0.6,  1)
 
 
-def lbl(texto, size=14, color=BLANCO, bold=False, halign="left"):
-    l = Label(text=texto, font_size=size, color=color, bold=bold,
+
+from kivy.metrics import dp, sp
+
+def lbl(texto, size=18, color=BLANCO, bold=False, halign="left"):
+    l = Label(text=texto, font_size=sp(size), color=color, bold=bold,
                halign=halign, valign="middle")
     l.bind(size=lambda s, v: setattr(s, "text_size", v))
     return l
 
-
-def btn(texto, color=AZUL, alto=dp(48)):
+def btn(texto, color=AZUL, alto=dp(58)):
     return Button(
-        text=texto, font_size=14,
+        text=texto, font_size=sp(18),
         size_hint=(1, None), height=alto,
         background_color=color,
         background_normal=""
@@ -179,7 +180,7 @@ class PantallaTicket(Screen):
         for p in productos:
             b = Button(
                 text=f"{p[1]}  ({p[2]:.4f} EUR/g)",
-                font_size=13, size_hint_y=None, height=dp(40),
+                font_size=sp(16), size_hint_y=None, height=dp(40),
                 background_normal="",
                 background_color=(0.2, 0.2, 0.35, 1)
             )

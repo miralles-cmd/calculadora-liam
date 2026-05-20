@@ -17,16 +17,17 @@ BLANCO = (1,    1,    1,    1)
 GRIS   = (0.6,  0.6,  0.6,  1)
 
 
-def lbl(texto, size=14, color=BLANCO, bold=False, halign="left"):
-    l = Label(text=texto, font_size=size, color=color, bold=bold,
+from kivy.metrics import dp, sp
+
+def lbl(texto, size=18, color=BLANCO, bold=False, halign="left"):
+    l = Label(text=texto, font_size=sp(size), color=color, bold=bold,
                halign=halign, valign="middle")
     l.bind(size=lambda s, v: setattr(s, "text_size", v))
     return l
 
-
-def btn(texto, color=AZUL, alto=dp(48)):
+def btn(texto, color=AZUL, alto=dp(58)):
     return Button(
-        text=texto, font_size=14,
+        text=texto, font_size=sp(18),
         size_hint=(1, None), height=alto,
         background_color=color,
         background_normal=""
@@ -55,7 +56,7 @@ class PantallaCategorias(Screen):
             fila.add_widget(lbl(f"Cat {cat[0]}:", size=13,
                                  color=GRIS, halign="left"))
             inp = TextInput(
-                text=cat[1], font_size=14,
+                text=cat[1], font_size=sp(18),
                 multiline=False,
                 size_hint=(1, None), height=dp(44)
             )
