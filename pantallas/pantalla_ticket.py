@@ -9,6 +9,7 @@ from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 from kivy.uix.textinput import TextInput
 from kivy.metrics import dp
+from kivy.metrics import dp, sp
 
 from base_datos import (obtener_o_crear_ticket_hoy, obtener_lineas_ticket,
                         obtener_gastos, actualizar_gastos, listar_productos,
@@ -70,25 +71,31 @@ class PantallaTicket(Screen):
         scroll.add_widget(self.contenedor_ventas)
         raiz.add_widget(scroll)
 
-        # ── Totales ────────────────────────────────────────
-        self.lbl_total = lbl("Total ventas: 0.00 EUR",
-                              size=15, bold=True, color=VERDE)
-        self.lbl_neto  = lbl("", size=13, color=GRIS)
-        raiz.add_widget(self.lbl_total)
-        raiz.add_widget(self.lbl_neto)
-
         # ── Botones ────────────────────────────────────────
-        b1 = btn("+ Anadir venta", color=AZUL)
-        b2 = btn("Gastos del dia", color=NARANJA)
-        b3 = btn("Exportar JPG",   color=VERDE)
+        b1 = Button(text="+ Anadir venta", font_size=sp(18),
+                    size_hint=(1, None), height=dp(56),
+                    background_color=AZUL, background_normal="")
+        b2 = Button(text="Gastos del dia", font_size=sp(18),
+                    size_hint=(1, None), height=dp(56),
+                    background_color=NARANJA, background_normal="")
+        b3 = Button(text="Exportar JPG", font_size=sp(18),
+                    size_hint=(1, None), height=dp(56),
+                    background_color=VERDE, background_normal="")
+        b4 = Button(text="Volver al menu", font_size=sp(16),
+                    size_hint=(1, None), height=dp(48),
+                    background_color=(0.3, 0.3, 0.3, 1),
+                    background_normal="")
 
         b1.bind(on_press=lambda x: self._abrir_anadir())
         b2.bind(on_press=lambda x: self._abrir_gastos())
         b3.bind(on_press=lambda x: self._exportar())
+        b4.bind(on_press=lambda x: setattr(
+            self.manager, "current", "menu"))
 
         raiz.add_widget(b1)
         raiz.add_widget(b2)
         raiz.add_widget(b3)
+        raiz.add_widget(b4)
 
         self.add_widget(raiz)
         self._actualizar()
